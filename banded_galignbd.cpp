@@ -62,8 +62,7 @@ pair<long, int> max( long x, long y, long z ) {
     return max; 
 }
 
-int check_match( string &s1, string &s2, int &x, int &y )
-{
+int check_match( string &s1, string &s2, int &x, int &y ) {
     if ( x < 0 || x >= (int)s1.length() )
         return 0;
     if ( y < 0 || y >= (int)s2.length() )
@@ -76,8 +75,7 @@ int check_match( string &s1, string &s2, int &x, int &y )
  * reverse string alignment and prints in proper order
  */
 static void parse_and_output(vector<vector<matrix_node> > &matrix, 
-                             string &s1, string &s2, int &k, int &mp )
-{
+                             string &s1, string &s2, int &k, int &mp ) {
     cout << "Optimal alignment: " << matrix[s1.length()][2*k+1].as << "\n";
     int max_identity = -1;
     string final_s1 = "";
@@ -186,8 +184,7 @@ static void compute_alignment(vector<vector<matrix_node> > &matrix, string &s1,
 
 
 static void banded_galignbd( string &s1, string &s2, int &match,
-                             int &mismatch, int &indel)
-{
+                             int &mismatch, int &indel) {
     if ( !s1.compare(s2) ) {
         cout << "No alignment necessary -- these strings are exactly equal!\n";
         cout << "\"Alignment\" of s1 and s2:\n"<<s1<<"\n"<<s2<<"\n";
@@ -241,8 +238,8 @@ int main(int argc, const char **argv) {
     std::ifstream seq2;
 
     if (first_arg.substr(0,1) == USER_DEFINED_FUNCTION) {
-        cout << "WARNING: program will automatically use function (1,0,0)"
-             << " regardless of input, per class instruction.\n";
+       // cout << "WARNING: program will automatically use function (1,0,0)"
+       //      << " regardless of input, per class instruction.\n";
         for (int i = 1; i < 4; ++i) {
             string cur_arg(argv[i]);
             int cur_val = atoi(cur_arg.substr(2,cur_arg.length()).c_str());
@@ -278,9 +275,9 @@ int main(int argc, const char **argv) {
         TEMP = "";
     }
 
-    match = 1;
-    mismatch = 0;
-    indel = 0;
+   // match = 1;
+   // mismatch = 0;
+   // indel = 0;
 
     banded_galignbd(s1,s2,match,mismatch,indel);
 

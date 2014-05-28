@@ -75,7 +75,6 @@ static void galignbd(vector<vector<matrix_node> > &matrix, string &s1,
         for (unsigned int j = 1; j < s2.length(); ++j) {
             int matchOrMismatch = 
                 (s1.at(i-1) == s2.at(j-1)) ? match : mismatch;
-            //cout << "compared: [" << s1.at(i-1) << "] and " << j-1 << " [" << s2.at(j-1) << "]\n";
             pair<long, int> max_and_case;
             max_and_case =  max(matrix[i-1][j-1].as + matchOrMismatch,
                                       matrix[i-1][j].as + indel,
@@ -91,8 +90,7 @@ static void galignbd(vector<vector<matrix_node> > &matrix, string &s1,
  * reverse string alignment and prints in proper order
  */
 static void parse_and_output(vector<vector<matrix_node> > &matrix, 
-                             string &s1, string &s2 )
-{
+                             string &s1, string &s2 ) {
 
     long x = s1.length()-1;
     long y = s2.length()-1;
@@ -135,8 +133,7 @@ static void parse_and_output(vector<vector<matrix_node> > &matrix,
  * values. if they specify one value they must specify the other two.
  * WARNING: There is currently very little I/O error checking. 
  */
-int main(int argc, const char **argv) 
-{
+int main(int argc, const char **argv) {
     if (argc != 6 && argc != 3) {
         cout << "Incorrect number of args: specify full match function or "
              << "only the sequence text files to use the default function\n";
@@ -192,10 +189,8 @@ int main(int argc, const char **argv)
         TEMP = "";
     }
 
-    
-
-
-    cout << s1.length() << "\ns1:\t" << s1 << "\n" << s2.length() << "\ns2:\t" << s2 << "\n"; 
+    cout << s1.length() << "\ns1:\t" << s1 << "\n" << s2.length()
+         << "\ns2:\t" << s2 << "\n"; 
     long n = s1.length()+1;
     long m = s2.length()+1;
 

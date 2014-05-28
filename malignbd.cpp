@@ -38,7 +38,6 @@ using std::cout;
 using std::string;
 using std::pair;
 
-
 /*
  * Each node in the matrix needs to know both it's current alignment score
  * and where it came from.
@@ -53,8 +52,8 @@ struct Profile {
         vector<string> names;
         vector<string> alignment;
         vector< vector<float> > psm;
-        Profile(vector<string> n, vector<string> a, vector< vector<float> > p)
-        {
+        Profile(vector<string> n, vector<string> a,
+                                  vector< vector<float> > p) {
             names = n;  
             alignment = a;
             psm = p;
