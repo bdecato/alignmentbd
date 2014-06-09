@@ -189,8 +189,9 @@ int main(int argc, const char **argv) {
         TEMP = "";
     }
 
-    cout << s1.length() << "\ns1:\t" << s1 << "\n" << s2.length()
-         << "\ns2:\t" << s2 << "\n"; 
+    cout << "Sequence 1:\t" << s1 << "\n\tSequence 1 length: " << s1.length()
+         << "\nSequence 2:\t" << s2 << "\n\tSequence 2 length: "
+         << s2.length() << "\n"; 
     long n = s1.length()+1;
     long m = s2.length()+1;
 
