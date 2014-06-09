@@ -33,10 +33,13 @@ ifdef OPT
 	CXXFLAGS += $(OPTFLAGS)
 endif
 
-all: galignbd banded_galignbd malignbd
+all: galignbd lalignbd banded_galignbd malignbd
 
-galignbd: galignbd.cpp 
+galignbd: galignbd.cpp
 	$(CXX) $(CXXFLAGS) -o $@ galignbd.cpp
+
+lalignbd: lalignbd.cpp 
+	$(CXX) $(CXXFLAGS) -o $@ lalignbd.cpp
 
 banded_galignbd: banded_galignbd.cpp
 	$(CXX) $(CXXFLAGS) -o $@ banded_galignbd.cpp

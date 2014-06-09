@@ -131,9 +131,37 @@ table is traced backwards to find the true alignment.
 The time and space complexity for this algorithm as implemented are both
 quadratic $\mathcal{O}(nm)$, as I iterate over all substrings computing their
 score and storing it in an n by m table.  It is possible to perform global
-alignment in linear space, but easy implementation of local alignment is
-sacrificed and the linear space version is not implemented here.  Keep an
-eye out for later commits!
+alignment in linear space, but it is not implemented here: keep an eye
+out for future updates!
+
+\item{\bf{lalignbd}:}
+
+Local alignment between two sequences. This program operates almost
+identically to \prog{galignbd}, with a few crucial differences, the
+most important occurring in the recurrence relation:
+
+\begin{displaymath}
+S(i,j) = max\left\{
+  \begin{array}{lr}
+    S(i-1,j-1) + w{u_i\choose v_j}\\
+    S(i-1,j) + w{u_i\choose -} \\
+    S(i,j-1) + w{-\choose v_j} \\
+    0
+    \end{array}
+    \right.
+\end{displaymath}
+
+The additional option of "starting over" the alignment provides a
+way to align two fragments of the original sequences. This is useful
+when the sizes of the fragments differ substantially, preventing a
+"gappy" global alignment, or when two sequences are known to share
+small homologous regions of similarity such as transcription factor
+binding sites, orthologous genes, or retrotransposons.
+
+Local alignment runs a little slower because the optimal score could
+occur in any cell of the matrix, not just the $(n,m)^{th}$ position,
+so during the trace back step must search every cell.
+
 
 \item{\bf{banded\_galignbd}:}
 
@@ -202,12 +230,14 @@ This must be done completely or not at all, and can be passed as follows:
 
 \begin{verbatim}
 > galignbd -m 2 -s 1 -i 3 first_sequence.fasta second_sequence.fasta
+> lalignbd -m 2 -s 1 -i 3 first_sequence.fasta second_sequence.fasta
 > banded_galignbd -m 2 -s 1 -i 3 first_sequence.fasta second_sequence.fasta
 > malignbd -m 2 -s 1 -i 3 all_sequences.fasta
 \end{verbatim}
 
 This will provide a score function that penalizes mismatches by $1$, indels
-by $3$, and ups the score for a match by $2$. For \prog{galignbd} and 
+by $3$, and ups the score for a match by $2$. For \prog{galignbd},
+\prog{lalignbd}, and 
 \prog{banded\_galignbd}, the sequences should come in FASTA format in two
 seperate files. For \prog{malignbd}, they should come in one FASTA file
 seperated by a newline. There is currently very little I/O error checking:
