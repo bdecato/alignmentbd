@@ -177,7 +177,6 @@ int main(int argc, const char **argv) {
     while( !seq1.eof() )
     {
         getline(seq1, TEMP, '\n');
-        cout << TEMP;
         s1 += TEMP;
         TEMP = "";
     }
