@@ -33,7 +33,7 @@ ifdef OPT
 	CXXFLAGS += $(OPTFLAGS)
 endif
 
-all: galignbd lalignbd banded_galignbd malignbd
+all: galignbd lalignbd banded_galignbd malignbd bslalignbd
 
 galignbd: galignbd.cpp
 	$(CXX) $(CXXFLAGS) -o $@ galignbd.cpp
@@ -46,6 +46,9 @@ banded_galignbd: banded_galignbd.cpp
 
 malignbd: malignbd.cpp
 	$(CXX) $(CXXFLAGS) -o $@ malignbd.cpp
+
+bslalignbd:  bslalignbd.cpp
+	$(CXX) $(CXXFLAGS) -o $@ bslalignbd.cpp
 
 clean: 
 	@-rm -f *.o *~
