@@ -80,7 +80,7 @@ static void bslalignbd(vector<vector<matrix_node> > &matrix, string &s1,
         for (unsigned int j = 1; j < s2.length(); ++j) {
             int matchOrMismatch = 
                 (s1.at(i-1) == s2.at(j-1) ||
-                (s1.at(i-1)=='C' && s2.at(i-1)=='T')) ? match : mismatch;
+                (s1.at(i-1)=='C' && s2.at(j-1)=='T')) ? match : mismatch;
             pair<long, int> max_and_case;
             max_and_case =  max(matrix[i-1][j-1].as + matchOrMismatch,
                                       matrix[i-1][j].as + indel,
@@ -197,7 +197,6 @@ int main(int argc, const char **argv) {
     while( !seq1.eof() )
     {
         getline(seq1, TEMP, '\n');
-        cout << TEMP;
         s1 += TEMP;
         TEMP = "";
     }
